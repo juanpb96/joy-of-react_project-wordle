@@ -9,7 +9,7 @@ function GuessList({ guesses = [] }) {
   return (
     <div className="guess-results">
       {guessSlots.map((_, index) => (
-        <Guess key={index} word={guesses[index]?.guess || ""} />
+        <Guess key={index} letters={guesses[index] || []} />
       ))}
     </div>
   );
