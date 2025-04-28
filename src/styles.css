@@ -197,6 +197,45 @@ h1 {
 }
 
 /*
+  Keyboard styles
+*/
+.keyboard-wrapper {
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.keyboard-key {
+  display: grid;
+  place-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 4px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  background: var(--color-gray-900);
+}
+
+.keyboard-key.correct {
+  background: var(--color-success);
+  color: white;
+}
+
+.keyboard-key.incorrect {
+  background: var(--color-gray-300);
+  color: white;
+}
+
+.keyboard-key.misplaced {
+  background: var(--color-warning);
+  color: white;
+}
+
+/*
   Modal styles
 
   HACK: I'm doing this in a quick and dirty way.
