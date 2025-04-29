@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { sample } from "../../utils";
 import { WORDS } from "../../data";
@@ -9,12 +9,10 @@ import { KEYBOARD_KEYS, NUM_OF_GUESSES_ALLOWED } from "../../constants";
 import Banner from "../Banner";
 import Keyboard from "../Keyboard";
 
-// Pick a random word on every pageload.
-const answer = sample(WORDS);
-// To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
-
 function Game() {
+  const [answer, setAnswer] = useState(() => sample(WORDS));
+  // To make debugging easier, we'll log the solution in the console.
+  console.info({ answer });
   const [guesses, setGuesses] = React.useState([]);
   const [gameOver, setGameOver] = React.useState({
     status: false,
@@ -56,12 +54,21 @@ function Game() {
 
   function addGuess(newGuess) {
     const guessResult = checkGuess(newGuess, answer);
-    console.log(guessResult);
-
     const nextGuesses = [...guesses, guessResult];
+
     setGuesses(nextGuesses);
     checkGameStatus(newGuess, nextGuesses.length);
     updateKeyboardStatus(guessResult);
+  }
+
+  function restartGame() {
+    setAnswer(sample(WORDS));
+    setGuesses([]);
+    setGameOver({
+      status: false,
+      hasWon: "",
+    });
+    setKeyboardKeys(KEYBOARD_KEYS);
   }
 
   return (
@@ -74,6 +81,7 @@ function Game() {
           answer={answer}
           hasWon={gameOver.hasWon}
           numOfGuesses={guesses.length}
+          onRestart={restartGame}
         />
       )}
     </>

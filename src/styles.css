@@ -235,6 +235,17 @@ h1 {
   color: white;
 }
 
+.restart-btn {
+  cursor: pointer;
+  padding: 8px 16px;
+  margin-top: 16px;
+  border-radius: 4px;
+  background: var(--color-gray-100);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
 /*
   Modal styles
 
